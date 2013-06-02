@@ -8,13 +8,14 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using Hangman.Filters;
 using Hangman.Models;
+using Hangman.Components.Readers;
+using Hangman.Components.DataAccess.Writers;
+using Hangman.Components.Business;
 
 namespace Hangman.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -79,8 +80,8 @@ namespace Hangman.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    UserService.CreateUser(model.UserName);
+
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
