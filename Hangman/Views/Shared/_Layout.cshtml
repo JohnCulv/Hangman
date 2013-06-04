@@ -9,8 +9,11 @@
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
-        <header class=".site-header">
-            <div class="content-wrapper">
+        <header class="site-header">
+            <div class="content-wrapper clear-fix" style="position: relative">
+                <section id="login">
+                        @Html.Partial("_LoginPartial")
+                </section>
                 <div class="float-left">
                     <a title="Home" href="/">
                         <img alt="Hamgman logo" src="~/Images/hangman.jpg" />  
@@ -18,12 +21,11 @@
                                           
                 </div>
                 <div class="float-right"> 
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
+                    
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("The Game", "", "Play")</li>
                         </ul>
                     </nav>
                 </div>
@@ -40,9 +42,8 @@
                     <p>&copy; @DateTime.Now.Year - Hangman Group</p>
                 </div>
             </div>
-        </footer>
-
+        </footer>        
         @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
+        @RenderSection("Scripts", required: false)        
     </body>
 </html>

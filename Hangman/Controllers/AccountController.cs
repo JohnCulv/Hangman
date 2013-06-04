@@ -12,10 +12,12 @@ using Hangman.Models;
 using Hangman.Components.Readers;
 using Hangman.Components.DataAccess.Writers;
 using Hangman.Components.Business;
+using Hangman.Filters;
 
 namespace Hangman.Controllers
 {
     [Authorize]
+    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -80,7 +82,9 @@ namespace Hangman.Controllers
                 // Attempt to register the user
                 try
                 {
-                    UserService.CreateUser(model.UserName);
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    WebSecurity.Login(model.UserName, model.Password);
+
 
                     return RedirectToAction("Index", "Home");
                 }
