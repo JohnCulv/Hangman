@@ -2,18 +2,9 @@
 
 <h3>Chat</h3>
 
-<div id="chatWindow"></div>
-
-@using (Ajax.BeginForm("PostReply", "Game", new AjaxOptions
-                                                { 
-                                                    UpdateTargetId="chatWindow",
-                                                    HttpMethod="Post",
-                                                    OnSuccess="postComplete"
-                                                }, new { id = "chatForm" }))
-{
-    @Html.AntiForgeryToken()
-    
-    @Html.TextAreaFor(ta => ta.Message, new { id = "enterChat" })
-
-    <button type="submit">Reply</button>
-}
+<div class="container">
+    <input type="text" id="message" />
+    <input type="button" id="sendmessage" value="Send" />
+    <ul id="discussion">
+    </ul>
+</div>

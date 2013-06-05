@@ -22,7 +22,7 @@ namespace Hangman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PostReply(ChatModel chat)
         {
-            return Json(new { message = chat.Message });
+            return Json(new { message = chat.Message, user = User.Identity.Name });
         }
     }
 }

@@ -1,5 +1,12 @@
 ﻿var $chatWindow = $("#chatWindow");
+var chatCount = 0;
 
 function postComplete(chat) {
-    $chatWindow.append("<p>" + chat.message + "</p>").hide().fadeIn(2000);
+    $("<p><b>"+ chat.user + "</b>: " + chat.message + "</p>").attr(
+        { id: 'chat' + chatCount }
+        ).appendTo($chatWindow);
+
+    $("#chat" + chatCount).hide().fadeIn(1000);
+    chatCount++;
 };
+
